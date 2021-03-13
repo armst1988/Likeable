@@ -1,0 +1,15 @@
+<div *ngIf="!account" class="main">
+  <form [formGroup]="loginForm" (ngSubmit)="login()">
+    <div class="input-container">
+      <label>Username</label>
+      <input type="text" formControlName="username"/>
+    </div>
+    <div class="input-container">
+      <label>Password</label>
+      <input type="password" formControlName="password"/>
+    </div>
+    <button>Login</button>
+  </form>
+</div>
+<div *ngIf="account" class="below">Logged in as: {{account.username}}</div>
+<div *ngIf="error" class="error">Error: {{error.message}}</div>

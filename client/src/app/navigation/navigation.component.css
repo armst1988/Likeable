@@ -1,0 +1,52 @@
+:host {
+  display: flex;
+  justify-content: space-evenly;
+  padding-bottom: 7px;
+  margin-bottom: 10px;
+  width: 80%;
+  margin: auto;
+}
+
+.link {
+  font-size: 20px;
+  position: relative;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.link:before, .link:after {
+  content: "";
+  position: absolute;
+  bottom: 2px;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: #F37272;
+}
+
+.link:before {
+  opacity: 0;
+  transform: translateY(-8px);
+  transition: transform 0s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s;
+}
+
+.link:after {
+  opacity: 0;
+  transform: translateY(4px);
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+}
+
+.link:hover:before, .link:hover:after, .link:focus:before, .link:focus:after {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.link:hover:before, .link:focus:before {
+  transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
+}
+
+.link:hover:after, .link:focus:after {
+  transition: transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s 0.2s;
+}
+
+
