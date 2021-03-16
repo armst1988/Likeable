@@ -1,0 +1,38 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  max-width: 300px;
+  min-width: 250px;
+  flex-grow: 1;
+  border-radius: 7px 0 0 7px;
+}
+
+.header {
+  padding-bottom: 10px;
+  font-weight: bold;
+}
+
+.conversation {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 80px;
+  cursor: pointer;
+}
+
+.conversation > span {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  width: 75%;
+  overflow: hidden;
+  border-bottom: 1px solid #ccc;
+}
+
+.conversation:hover {
+  opacity: 0.8;
+}
+
+.conversation:nth-of-type(odd) {
+  background: #f8f8ff;
+}

@@ -1,0 +1,6 @@
+<div class="header">
+  <span>MESSAGES</span>
+</div>
+<div class="conversation" *ngFor="let conversation of conversations" (click)="handleClick(conversation)">
+  <span>text: {{conversation.message}}</span>
+</div>

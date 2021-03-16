@@ -16,17 +16,21 @@ export class AccountService {
   private error = new BehaviorSubject(null);
   error$ = this.error.asObservable();
 
-  private api = 'http://localhost:8000/api/user';
+  private api = 'http://10.0.0.26:8000/api/user';
+
+  private token: string;
 
   constructor(private http: HttpClient) {
     this.checkStorage();
   }
 
   checkStorage(): void {
-    const token = localStorage.getItem('token');
+    const data = localStorage.getItem('token');
 
-    if (token) {
-      this.account.next(JSON.parse(token));
+    if (data) {
+      const acct = JSON.parse(data);
+      this.token = acct.token;
+      this.account.next(acct);
     }
   }
 
@@ -45,6 +49,7 @@ export class AccountService {
 
   logout(): void {
     localStorage.removeItem('token');
+    this.token = null;
     this.account.next(null);
   }
 
@@ -61,7 +66,18 @@ export class AccountService {
       );
   }
 
+  hasValidToken(): boolean {
+    if (this.token) {
+      const token = JSON.parse(atob(this.token.split('.')[1]));
+      return Date.now() < (token.exp * 1000);
+    } else {
+      return false;
+    }
+
+  }
+
   private setAccount(account: Account): void {
+    this.token = account.token;
     localStorage.setItem('token', JSON.stringify(account));
     this.account.next(account);
   }

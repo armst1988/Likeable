@@ -1,4 +1,4 @@
-import * as express from 'express'
+import * as express from 'express';
 import {Request, Response} from "express";
 import {OrderService} from "../db/OrderService";
 import {Order} from "../interfaces/Order";

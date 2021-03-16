@@ -1,17 +1,17 @@
 <div *ngIf="!account" class="main">
   <form [formGroup]="loginForm" (ngSubmit)="login()">
-    <div class="input-container">
-      <label>Username</label>
-      <input type="text" formControlName="username"/>
-    </div>
-    <div class="input-container">
-      <label>Password</label>
-      <input type="password" formControlName="password"/>
-    </div>
-    <div class="input-container">
-      <label>E-mail</label>
-      <input type="text" formControlName="email">
-    </div>
+    <label class="input-container">
+      <input type="text" required="required" formControlName="username"/>
+      <span>Username</span>
+    </label>
+    <label class="input-container">
+      <input type="password" required="required" formControlName="password"/>
+      <span>Password</span>
+    </label>
+    <label class="input-container">
+      <input type="text" required="required" formControlName="email">
+      <span>E-mail</span>
+    </label>
     <button>Register</button>
   </form>
 </div>

@@ -1,33 +1,6 @@
 :host {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-.main {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  width: 400px;
-  height: 300px;
-}
-
-form {
-  display: flex;
-  flex-direction: column;
-  height: 150px;
-  justify-content: space-evenly;
-}
-
-.input-container {
-  display: flex;
-  flex-flow: column;
-  margin-bottom: 30px;
-}
-
-.error {
-  color: red;
-  font-weight: bold;
+  padding-top: 40px;
+  display: block;
 }
 
 input {
@@ -52,7 +25,6 @@ span {
   top: 9px;
   color: #ccc;
   transition: all 0.2s;
-  cursor: text;
 }
 
 input:valid {
@@ -62,8 +34,4 @@ input:valid {
 input:focus + span, input:valid + span {
   transform: translate(-10px, -29px) scale(0.95);
   color: black;
-}
-
-button {
-  width: 100px;
 }

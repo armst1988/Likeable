@@ -1,6 +1,6 @@
 <div class="logo">LOGO</div>
 <div class="link" routerLink="/" routerLinkActive="active">Home</div>
-<div class="link" routerLink="/order" routerLinkActive="active">Order</div>
+<div *ngIf="account" class="link" routerLink="/messages" routerLinkActive="active">Messages</div>
 <div *ngIf="!account; else logoutNav" routerLink="/test" routerLinkActive="active" class="link">Login</div>
 <div *ngIf="!account" routerLink="/register" routerLinkActive="active" class="link">Register</div>
 

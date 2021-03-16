@@ -5,4 +5,5 @@ export class Account {
   salt: string;
   email: string;
   created: string;
+  token: string;
 }

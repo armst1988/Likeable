@@ -49,6 +49,7 @@ export class UserController {
                                             }
                                             let token = jwt.sign(data, Constants.JWT_SECRET, {algorithm: 'HS256', expiresIn: Constants.JWT_TOKEN_LIFE})
                                             res.cookie("auth", token, {secure: true, httpOnly: true})
+                                            result.token = token;
                                             return res.send(result)
                                         })
                                 })
@@ -62,7 +63,6 @@ export class UserController {
     }
 
     login = async (req: Request, res: Response) => {
-        console.log('login request');
         let username = req.body.username
 
         let foundUsers = await this.userService.findByUsername(username)

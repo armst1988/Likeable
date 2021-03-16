@@ -1,0 +1,12 @@
+<div class="placeholderContainer" *ngIf="!messages">
+  <div class="placeholder">Choose a conversation to view</div>
+</div>
+<div class="messagesContainer" #scrollMe>
+  <div class="{{account.id === message.sender ? 'sent' : 'received'}}" *ngFor="let message of messages">
+    <span>{{message.message}}</span>
+  </div>
+</div>
+<div class="composeContainer" *ngIf="messages">
+  <textarea (keydown.enter)="sendMessage()" [(ngModel)]="messageText"></textarea>
+  <button (click)="sendMessage()">Send</button>
+</div>

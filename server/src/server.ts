@@ -4,10 +4,11 @@ import * as cors from "cors"
 import {OrderController} from "./controllers/OrderController";
 import {UserController} from "./controllers/UserController";
 import {Constants} from "./util/Constants";
+import {MessageController} from './controllers/MessageController';
 
 class OrderServer {
 
-    controllers = [new OrderController(), new UserController()]
+    controllers = [new OrderController(), new UserController(), new MessageController()]
 
     start(): void {
 
@@ -24,13 +25,18 @@ class OrderServer {
             if (tokenHeader !== undefined) {
                 token = tokenHeader.split(' ')[1]
                 jwt.verify(token, Constants.JWT_SECRET, (err, data) => {
+                    console.log('verifying token');
                     if (!err) {
+                        console.log('setting auth info');
                         req['auth'] = data
+                        next()
+                    } else {
+                        res.send(401);
                     }
                 })
+            } else {
+                next()
             }
-
-            next()
         })
 
         for (let controller of this.controllers) {
@@ -41,9 +47,10 @@ class OrderServer {
             res.send('DI')
         })
 
-        server.listen(8000)
+        server.listen(8000);
     }
 }
 
 let os = new OrderServer()
 os.start()
+console.log('started server')

@@ -1,6 +1,7 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {AccountService} from '../account.service';
 import {Subscription} from 'rxjs';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-navigation',
@@ -13,7 +14,8 @@ export class NavigationComponent implements OnInit, OnDestroy {
   account: Account;
 
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
@@ -26,6 +28,7 @@ export class NavigationComponent implements OnInit, OnDestroy {
 
   logout(): any {
     this.accountService.logout();
+    this.router.navigate(['test']);
   }
 
 }

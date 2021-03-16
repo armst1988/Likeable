@@ -4,6 +4,7 @@ import {Account} from '../account.model';
 import {ErrorMessage} from '../error.model';
 import {FormControl, FormGroup} from '@angular/forms';
 import {AccountService} from '../account.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -23,11 +24,17 @@ export class LoginComponent implements OnInit, OnDestroy {
   });
 
   constructor(
-    private accountService: AccountService
+    private accountService: AccountService,
+    private router: Router
   ) { }
 
   ngOnInit(): void {
-    this.accountSub = this.accountService.account$.subscribe(account => this.account = account);
+    this.accountSub = this.accountService.account$.subscribe((account) => {
+      this.account = account;
+      if (this.account != null) {
+        this.router.navigate(['']);
+      }
+    });
     this.errorSub = this.accountService.error$.subscribe(error => this.error = error);
   }
 

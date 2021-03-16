@@ -1,7 +1,8 @@
 :host {
   display: flex;
   justify-content: space-evenly;
-  padding-bottom: 7px;
+  padding-bottom: 25px;
+  padding-top: 20px;
   margin-bottom: 10px;
   width: 80%;
   margin: auto;
@@ -12,6 +13,7 @@
   position: relative;
   cursor: pointer;
   text-transform: uppercase;
+  outline: none !important;
 }
 
 .link:before, .link:after {
@@ -36,16 +38,16 @@
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
 }
 
-.link:hover:before, .link:hover:after, .link:focus:before, .link:focus:after {
+.link:hover:before, .link:hover:after, .link:focus:before, .link:focus:after, .active {
   opacity: 1;
   transform: translateY(0);
 }
 
-.link:hover:before, .link:focus:before {
+.link:hover:before, .link:focus:before, .active {
   transition: transform 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0.2s;
 }
 
-.link:hover:after, .link:focus:after {
+.link:hover:after, .link:focus:after, .active {
   transition: transform 0s 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275), opacity 0s 0.2s;
 }
 
