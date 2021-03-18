@@ -1,4 +1,4 @@
 export interface Conversation {
-    id: number,
-    participants: number[]
+    id: number;
+    participants: number[];
 }

@@ -1,4 +1,4 @@
-const { Pool } = require('pg')
+const { Pool } = require('pg');
 
 export const pool = new Pool({
     user: 'postgres',
@@ -6,5 +6,5 @@ export const pool = new Pool({
     database: 'order',
     password: 'pdfj92e13ad',
     port: 5432
-})
+});
 

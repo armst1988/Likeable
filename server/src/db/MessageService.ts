@@ -1,19 +1,18 @@
-import {pool} from "./DB";
-import {Conversation} from "../interfaces/Conversation";
-import {Message} from "../interfaces/Message";
+import {pool} from './DB';
+import {Conversation} from '../interfaces/Conversation';
+import {Message} from '../interfaces/Message';
 
 export class MessageService {
     async findConversationsById(id: number): Promise<Conversation[]> {
         return pool
             .query('SELECT * FROM conversations WHERE $1 = ANY(participants)', [id])
             .then(result => {
-                return result.rows
-            })
+                return result.rows;
+            });
     }
 
-    async findRecentConversationMessages(userId: number) {
+    async findRecentConversationMessages(userId: number): Promise<Message[]> {
         return pool
-            //.query('SELECT DISTINCT ON ("conversationId") * FROM messages WHERE sender = $1 OR recipient = $1 ORDER BY "conversationId", timestamp DESC', [userId])
             .query('SELECT\n' +
                 '\t\tjson_agg(\n' +
                 '\t\t\tjson_build_object(\n' +
@@ -28,16 +27,19 @@ export class MessageService {
                 '\t\t) as aMessages\n' +
                 '\tFROM (SELECT DISTINCT ON ("conversationId") * FROM messages WHERE sender = $1 OR recipient = $1 ORDER BY "conversationId", timestamp DESC)s', [userId])
             .then(result => {
-                return result.rows[0]
-            })
+                return result.rows[0];
+            });
     }
 
     async findMessagesByConversationId(id: number, requestor: number): Promise<Message[]> {
         return pool
-            .query('SELECT * FROM messages WHERE "conversationId" = $1 AND (sender = $2 OR recipient = $2) ORDER BY timestamp ASC', [id, requestor])
+            .query(
+                'SELECT * FROM messages WHERE "conversationId" = $1 AND (sender = $2 OR recipient = $2) ORDER BY timestamp ASC',
+                [id, requestor]
+            )
             .then(result => {
                 return result.rows;
-            })
+            });
     }
 
     async sendMessage(params): Promise<Message> {
@@ -45,6 +47,6 @@ export class MessageService {
             .query('INSERT INTO messages ("conversationId", sender, recipient, unread, timestamp, message, tip, "tipAmount") VALUES ($1, $2, $3, $4, current_timestamp, $5, $6, $7) RETURNING *', params)
             .then(result => {
                 return result.rows[0];
-            })
+            });
     }
 }
