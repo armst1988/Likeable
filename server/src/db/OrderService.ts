@@ -14,7 +14,6 @@ export class OrderService {
         return pool
             .query('SELECT * FROM orders WHERE id = $1', [id])
             .then(result => {
-                console.log(result.rows)
                 return result.rows[0]
             })
     }

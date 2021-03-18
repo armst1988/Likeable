@@ -17,7 +17,6 @@ export class WS {
     init(port) {
         this.WSS = new WebSocket.Server({port: port})
         this.WSS.on('connection', (socket: WebSocket) => {
-            console.log('client connected')
             const challenge = {type: 'challenge'}
             socket.send(JSON.stringify(challenge))
             socket.on('message', (message: any) => {

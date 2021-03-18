@@ -26,7 +26,6 @@ export class HomepageComponent implements OnInit, OnDestroy {
   }
 
   sendNotify(): void {
-    console.log('sending notification');
     const notification = new Notification();
     notification.message = 'Hello!';
     notification.style = null;

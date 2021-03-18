@@ -54,9 +54,7 @@ export class MessageController {
             req.body.tipAmount
         ]
         const message = await this.messageService.sendMessage(params)
-        console.log('checking websockets')
         this.socketServer.WSS.clients.forEach((client) => {
-            console.log(client.userId);
             if (client.userId === req.body.recipient) {
                 const data = {type: 'newMessage', payload: message}
                 console.log('found recipient in the websocket pool')

@@ -53,8 +53,6 @@ export class ConversationViewComponent implements OnInit, OnDestroy, AfterViewCh
   }
 
   sendMessage(): void {
-    console.log('send message');
-    console.log(this.messages);
     const message: Message = new Message();
     message.conversationId = this.messages[0].conversationId;
     message.recipient = this.recipient.id;

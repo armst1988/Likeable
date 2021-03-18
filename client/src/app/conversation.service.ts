@@ -72,20 +72,13 @@ export class ConversationService {
 
     const conversations = this.conversations.getValue();
 
-    console.log(newMessage);
 
     for (let i = 0; i < conversations.length; i++) {
-      console.log(conversations[i]);
       if (conversations[i].conversationId === newMessage.conversationId) {
-        console.log('matched a convo to update');
         conversations[i] = newMessage;
       }
     }
 
     this.conversations.next(conversations);
-  }
-
-  handleSocketMessage(newMessage: Message): void {
-    console.log('handling ' + newMessage);
   }
 }

@@ -20,14 +20,10 @@ class OrderServer {
             const tokenHeader = req.headers.authorization
             let token = null;
 
-            console.log(tokenHeader);
-
             if (tokenHeader !== undefined) {
                 token = tokenHeader.split(' ')[1]
                 jwt.verify(token, Constants.JWT_SECRET, (err, data) => {
-                    console.log('verifying token');
                     if (!err) {
-                        console.log('setting auth info');
                         req['auth'] = data
                         next()
                     } else {

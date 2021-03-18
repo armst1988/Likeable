@@ -22,8 +22,6 @@ export class ConversationListComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.conversationSub = this.conversationService.conversations$.subscribe(
       (conversations) =>  {
-        console.log('new convos');
-        console.log(conversations);
         this.conversations = conversations;
       }
     );
@@ -35,7 +33,6 @@ export class ConversationListComponent implements OnInit, OnDestroy {
   }
 
   handleClick(conversation: Conversation): void {
-    console.log('handle click');
     this.selectedConversation.emit(conversation);
   }
 

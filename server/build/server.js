@@ -6,7 +6,6 @@ class OrderServer {
         const server = express();
         server.use(express.json);
         server.get('/', (req, res) => {
-            console.log('fuck');
             res.send('bad requesst bitch');
         });
         server.listen(8000);

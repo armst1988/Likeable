@@ -30,7 +30,6 @@ export class LiveDataService {
   subscribe(): void {
     this.socket$.subscribe(
       data => {
-        console.log(data);
         if (data.type === 'message') {
           this.message.next(data.payload);
         } else if (data.type === 'challenge') {
@@ -44,7 +43,6 @@ export class LiveDataService {
         console.log(err);
       },
       () => {
-        console.log('socket complete');
       }
     );
   }
